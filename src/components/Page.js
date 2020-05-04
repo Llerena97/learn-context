@@ -1,33 +1,30 @@
-import React from 'react';
-import Head from 'next/head'
-import Page from './../src/components/Page'
+import React, { useContext } from 'react';
+import SubPage from './SubPage'
+import {TestContext} from './../../store'
 
-import Store from './../store'
+const Page = () => {
+  const [test] = useContext(TestContext)
 
-const Main = () => {
   return (
-    <Store>
     <div className="container">
-      <Head>
-        <title>Learn Context</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <div className="main">
-        <Page />
+        <SubPage />
+        <div>{test}</div>
       </div>
       <style jsx>{`
         .container {
           display: flex;
-          width: 100vw;
-          height: 100vh;
+          width: 100%;
+          height: 100%;
           justify-content: center;
           align-items: center;
         }
         .main {
           display: flex;
-          width: 600px;
-          height: 600px;
-          background: #f8f8f8;
+          flex-direction: column;
+          width: 400px;
+          height: 400px;
+          background: #D8D8D8;
           justify-content: center;
           align-items: center;
           border: solid 1px #000000;
@@ -53,8 +50,7 @@ const Main = () => {
         }
       `}</style>
     </div>
-    </Store>
   )
 }
 
-export default Main;
+export default Page;

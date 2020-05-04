@@ -1,33 +1,38 @@
-import React from 'react';
-import Head from 'next/head'
-import Page from './../src/components/Page'
+import React, {useContext} from 'react';
+import {TestContext} from './../../store'
 
-import Store from './../store'
+const SubPage = () => {
+  const [test, setTest] = useContext(TestContext)
 
-const Main = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(subPage)
+  }
+
   return (
-    <Store>
     <div className="container">
-      <Head>
-        <title>Learn Context</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className="main">
-        <Page />
-      </div>
+      <form className="main" onSubmit={handleSubmit}>
+        <h3>Learn Context</h3>
+        <input type="text" placeholder="Type..." 
+          value={test} onChange={e => setTest(e.target.value)}
+        />
+        <input type="submit" value="Change" />
+      </form>
       <style jsx>{`
         .container {
           display: flex;
-          width: 100vw;
-          height: 100vh;
+          width: 100%;
+          height: 100%;
           justify-content: center;
           align-items: center;
         }
+
         .main {
           display: flex;
-          width: 600px;
-          height: 600px;
-          background: #f8f8f8;
+          flex-direction: column;
+          width: 300px;
+          height: 300px;
+          background: #FFFFFF;
           justify-content: center;
           align-items: center;
           border: solid 1px #000000;
@@ -53,8 +58,7 @@ const Main = () => {
         }
       `}</style>
     </div>
-    </Store>
   )
 }
 
-export default Main;
+export default SubPage;
